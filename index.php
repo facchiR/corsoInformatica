@@ -1,7 +1,14 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once 'classes/Student.php';
+
+spl_autoload_register(function($class_name){
+    require_once $class_name.'.php';
+});
+use Users\Student as Student;
+use Users\Course as Course;
+//use Users\DigitalUser as DigitalUser;
+//require_once 'classes/Course.php';
 
 echo "<h1>Hello world!</h1>";
 
@@ -13,4 +20,11 @@ echo $student1;
 echo "<br>";
 echo $student2;
 echo "<br>";
+echo $student3;
+
+$course1 = new Course("Cucina", "17.00");
+$course2 = new Course("Cucito", "17.30");
+$student3->addCourse($course1);
+$student3->addCourse($course2);
+echo '<br>';
 echo $student3;
