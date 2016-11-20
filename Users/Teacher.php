@@ -1,28 +1,38 @@
 <?php
+
 namespace Users;
 
-class Teacher extends Worker {
+use \Iterator as It;
+
+class Teacher extends Worker implements It {
+    
     use DigitalUser;
     
     private $name;
     private $age;
     private $course;
-    public function __construct($name, $age, $email, $course=null){
+    private $company;
+    private $school;
+    private $position = 0;
+    
+    public function __construct($name, $age, $email, $course=null, $school=null, $company=null){
         $this->name=$name; 
         $this->age=$age; 
         $this->email=$email; 
         $this->course=$course; 
+        $this->school=$school; 
+        $this->company=$company; 
     }
     public function __toString(){
-        
-        //foreach()
-        return "Nome: $this->name Età: $this->age EMail: $this->email $this->course ";    
+        $st = " ";
+        foreach($this as $student){
+            $st.="<br/>".$student;
+        }
+        return "Nome: ".$this->name."<br/>"."Età: ".$this->age."<br/>"."EMail: ".$this->email
+                ."<br/>"."Corsi: ".$this->course."<br/>"."Studenti: ".$st;    
     }
-    /*
-    $courses = " ";
-        foreach($this->courses as $course){
-            $courses .= '<br>'.$course;
-        }*/
+    
+
     public function getCourse(){
         return $this->course;
     }
@@ -35,6 +45,28 @@ class Teacher extends Worker {
     public function setSchool(School $school){
         $this->school = $school;
     }
+    
+//metodi dell'iterator
+    public function key(){
+        return $this->position;
+    }
+
+    public function current(){
+        return $this->getStudents()[$this->position];
+    }
+
+    public function next(){
+        $this->position++;
+    }
+
+    public function rewind(){
+        $this->position = 0;
+    }
+
+    public function valid(){
+        return isset($this->getStudents()[$this->position]) || array_key_exists($this->position, $this->getStudents());                   
+    }
+    
     //metodi dell'interfaccia
     public function getName(){
         return $this->name;
@@ -47,6 +79,17 @@ class Teacher extends Worker {
     }
     public function setAge($age){
         $this->age = $age;
+    }
+    public function getStudents(){
+        $studs = [];
+        foreach ($this->school as $student) {
+            foreach ($student as $course) {
+                if($course === $this->course){
+                    array_push($studs, $student);
+                }
+            }            
+        }
+        return $studs;
     }
     
 }

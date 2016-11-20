@@ -1,6 +1,9 @@
 <?php
+namespace Users;
+
 trait DigitalUser{
     private $email;
+    
     public function getEmail(){
         return $this->email;
     }

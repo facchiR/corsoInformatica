@@ -1,4 +1,6 @@
 <?php
+namespace Users;
+
 interface Person{
     public function getName();
     public function setName($name);

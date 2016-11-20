@@ -7,6 +7,8 @@ spl_autoload_register(function($class_name){
 });
 use Users\Student as Student;
 use Users\Course as Course;
+use Users\Teacher as Teacher;
+use Users\School as School;
 //use Users\DigitalUser as DigitalUser;
 //require_once 'classes/Course.php';
 
@@ -16,15 +18,26 @@ $student1 = new Student("Donald Duck", 37, "gkgjh@lll");
 $student2 = new Student("Mickey Mouse", 48, "gkgjh@lll");
 $student3 = new Student("Daisy Duck", 34, "gkgjh@lll");
 
-echo $student1;
-echo "<br>";
-echo $student2;
-echo "<br>";
-echo $student3;
+//echo $student1."<br/>".$student2."<br/>".$student3."<br/>";
 
-$course1 = new Course("Cucina", "17.00");
-$course2 = new Course("Cucito", "17.30");
+$course1 = new Course("Cucina", 100);
+$course2 = new Course("Cucito", 150 );
+
+//echo $course1."<br/>".$course2."<br/>";
+
 $student3->addCourse($course1);
 $student3->addCourse($course2);
-echo '<br>';
-echo $student3;
+$student1->addCourse($course1);
+
+//echo $student1."<br/>".$student3."<br/>";
+
+$school1 = new School("Accademia");
+$school1 ->addStudent($student1);
+$school1 ->addStudent($student2);
+$school1 ->addStudent($student3);
+
+$course3 = new Course("fotografia", 100);
+$teacher1 = new Teacher("Steve McCurry", 67, "ybdyex@hhh", $course3, $school1);
+$student1->addCourse($course3);
+//echo $school1."<br/>";
+echo $teacher1."<br/>";
