@@ -5,10 +5,10 @@ error_reporting(E_ALL);
 spl_autoload_register(function($class_name){
     require_once $class_name.'.php';
 });
-use Users\Student as Student;
-use Users\Course as Course;
-use Users\Teacher as Teacher;
-use Users\School as School;
+use Models\Users\Student as Student;
+use Models\Users\Course as Course;
+use Models\Users\Teacher as Teacher;
+use Models\Users\School as School;
 //use Users\DigitalUser as DigitalUser;
 //require_once 'classes/Course.php';
 

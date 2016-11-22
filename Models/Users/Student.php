@@ -1,9 +1,9 @@
 <?php
-namespace Users;
+namespace Models\Users;
 //require_once 'Person.php';
 //require_once 'DigitalUser.php';
-
-class Student implements \Iterator, Person{
+use Models\Table as Table;
+class Student extends Table implements \Iterator, Person{
     
     use DigitalUser;
     
@@ -12,11 +12,26 @@ class Student implements \Iterator, Person{
     private $courses = array();
     private $position = 0;
     
+    public static function getInstanceFromDb($id){
+        
+    }
+    
     public function __construct($name, $age, $email, $courses=[]){
+        parent::__construct();           
+        
         $this->name=$name;
         $this->age=$age;
         $this->email=$email;
         $this->courses=$courses;
+    }
+    static function loadFromDb($id) {
+        $instance = self::get($id);
+        if ($instance){
+            foreach ($instance as $key=>$value){
+                if(strpos(key, "_")==false){
+                $this->$key = $value;}
+            }
+        }
     }
     
     function __toString(){
