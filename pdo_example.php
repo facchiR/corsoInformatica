@@ -19,7 +19,7 @@ try{
 }
 
 $connessione->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,
-        PDO::FETCH_ASSOC);
+        PDO::FETCH_ASSOC); //PDO::FETCH_NUM
 
 $result = $connessione->query("SELECT * FROM student");
 
@@ -28,5 +28,4 @@ $result = $connessione->query("SELECT * FROM student");
 $result = $connessione->prepare("SELECT * FROM student WHERE id = :id LIMIT 1");
 $id = 2;
 $result->execute(array(":id" => $id));
-//echo "Prova prepare()";
-echo json_encode($result->fetchAll());
+echo json_encode($result->fetch());

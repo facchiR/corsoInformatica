@@ -17,7 +17,7 @@ class Student extends Table implements \Iterator, Person{
     }
     
     public function __construct($name, $age, $email, $courses=[]){
-        parent::__construct();           
+        parent::__construct("student");           
         
         $this->name=$name;
         $this->age=$age;
@@ -25,10 +25,10 @@ class Student extends Table implements \Iterator, Person{
         $this->courses=$courses;
     }
     static function loadFromDb($id) {
-        $instance = self::get($id);
+        $instance = $this->get($id);
         if ($instance){
             foreach ($instance as $key=>$value){
-                if(strpos(key, "_")==false){
+                if(strpos($key, "_")===false){
                 $this->$key = $value;}
             }
         }
