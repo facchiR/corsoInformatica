@@ -8,7 +8,7 @@ class School implements \Iterator {
     private $students = [];
     private $position = 0;
     
-    public function __construct($name, $address=[]){
+    public function __construct($name, $address=""){
         $this->name = $name;
         $this->address = $address;
     }

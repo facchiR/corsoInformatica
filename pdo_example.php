@@ -59,7 +59,7 @@ $result = $connessione->query("SELECT student.id 'student.id', student.name 'stu
 foreach ($result as $riga){
     foreach ($riga as $key => $value){
         $pre = substr($key, 0, strpos($key, '.'));
-        $pos = substr($key, strpos($key, '.'), strlen($key)-1); 
+        $pos = substr($key, strpos($key, '.')+1, strlen($key)-1); 
         if($pre == "student"){
             $student = isset($student)?$student:[];
             $student[$pos] = $value;
@@ -71,3 +71,6 @@ foreach ($result as $riga){
 }
         echo var_dump($student);
         echo var_dump($school);
+        $st = new Models\Users\Student($student['name'], $student['age'], $student['email'] );
+        $sc = new Models\Users\School($school['name'], $school['address']);
+        echo "<br/><h4>$sc $st</h4>";
