@@ -31,7 +31,7 @@ $student1->addCourse($course1);
 
 //echo $student1."<br/>".$student3."<br/>";
 
-$school1 = new School("Accademia");
+$school1 = new School("Accademia", "Vico della Neve");
 $school1 ->addStudent($student1);
 $school1 ->addStudent($student2);
 $school1 ->addStudent($student3);
@@ -40,4 +40,5 @@ $course3 = new Course("fotografia", 100);
 $teacher1 = new Teacher("Steve McCurry", 67, "ybdyex@hhh", $course3, $school1);
 $student1->addCourse($course3);
 //echo $school1."<br/>";
-echo $teacher1."<br/>";
+echo $teacher1."<br/>"."<br/>";
+echo $school1."<br/>";

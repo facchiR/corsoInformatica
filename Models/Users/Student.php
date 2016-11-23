@@ -24,7 +24,7 @@ class Student extends Table implements \Iterator, Person{
         $this->email=$email;
         $this->courses=$courses;
     }
-    static function loadFromDb($id) {
+    function loadFromDb($id) {
         $instance = $this->get($id);
         if ($instance){
             foreach ($instance as $key=>$value){

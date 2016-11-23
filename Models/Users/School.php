@@ -4,18 +4,20 @@ namespace Models\Users;
 
 class School implements \Iterator {
     private $name;
+    public $address;
     private $students = [];
     private $position = 0;
     
-    public function __construct($name){
+    public function __construct($name, $address=[]){
         $this->name = $name;
+        $this->address = $address;
     }
     public function __toString(){
         $str = " ";
         foreach ($this->students as $student) {
             $str.="<br/>".$student;
         }
-        return "scuola: $this->name<br/>studenti: $str";
+        return "scuola: $this->name<br/>indirizzo: $this->address <br/>studenti: $str";
     }
     public function addStudent(Student $stud){
         array_push($this->students, $stud);

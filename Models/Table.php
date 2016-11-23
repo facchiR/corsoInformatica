@@ -14,7 +14,7 @@ abstract class Table{
     private $password = "";
     //private $table = "";
     
-    private static $instance = null;
+    private $instance = null;
     protected $id = 0;
     /**
      * Initialize all parameters required to connect

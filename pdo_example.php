@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -19,7 +19,9 @@ try{
 }
 
 $connessione->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,
-        PDO::FETCH_ASSOC); //PDO::FETCH_NUM
+        PDO::FETCH_ASSOC); 
+        //PDO::FETCH_BOTH);
+        //PDO::FETCH_NUM);
 
 $result = $connessione->query("SELECT * FROM student");
 
@@ -28,4 +30,17 @@ $result = $connessione->query("SELECT * FROM student");
 $result = $connessione->prepare("SELECT * FROM student WHERE id = :id LIMIT 1");
 $id = 2;
 $result->execute(array(":id" => $id));
+//echo json_encode($result->fetch());
+
+$result = $connessione->prepare("SELECT * FROM student WHERE age > :age AND email LIKE :email");
+$age = 50;
+$email = "%@usa%";
+$result->execute(array(":age"=>$age, ":email"=>$email));
+foreach ($result as $riga){
+    foreach($riga as $key => $value){
+        echo "$key : $value<br/>";
+    }
+}
+
+$result = $connessione->query("SELECT student.name 'student.name', school.name, school.address FROM student INNER JOIN school ON student.school_id=school.id;");
 echo json_encode($result->fetch());
